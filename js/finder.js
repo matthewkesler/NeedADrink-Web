@@ -1,10 +1,13 @@
 (function($, NeedADrink) {
    NeedADrink.Finder = {
+      /**
+       * Geolocate and render a new nearby business 
+       */
       init: function() {
          var that = this;
-
-         // show loading template
-         $("#main").html(Handlebars.compile($("#loading").html())).fadeIn();
+         $("#main").fadeOut(function() {
+           $("#main").html(Handlebars.compile($("#loading").html())).fadeIn();
+         });
 
          // set index to 0 (for closest business result)
          localStorage.index = 0;
@@ -26,6 +29,10 @@
             });
          }
       },
+      /**
+       * Renders the overal business screen
+       * Delegates to renderLocation for that piece
+       */
       render: function() {
         var that = this;
          $('#main').fadeOut(function() {
@@ -35,6 +42,9 @@
             that.bind();
          });
       },
+      /**
+       * Renders just the business location info
+       */
       renderLocation: function() {
          var that = this,
              data  = $.parseJSON(localStorage.businesses),
@@ -60,26 +70,42 @@
             $('#locationPanel').html(compiled(templateData)).fadeIn(1000);
          });
       },
+      /**
+       * Binds buttons and links
+       */
       bind: function() {
          var that = this;
          // advance the index or refresh
          $('body').on('click', 'button', function() {
             if($(this).hasClass('nextBtn')) {
                var index = parseInt(localStorage.index);
-               index = (index < NeedADrink.maxResults-1)?index+1:0; // only go to max results
+               // only go to max results
+               if(index < NeedADrink.maxResults-1) {
+                  index++;
+                  $('.next').show();
+               }
+               else {
+                  index = 0; 
+                  $('.next').hide();
+               }
                localStorage.index = index;
                that.renderLocation();
             }
             else {
                $('#main').fadeOut(function() {
-                  location.reload();
+                  that.init();
                });
             }
          });
+
+         $('body').on('click', '.business-info', function() {
+            alert("here");
+            window.location = this.attr('data-url');
+         });
       },
       /**
-       * Fetches up to the configured number of closest businesses from Yelp
-       * and writes them to localStorage
+       * Fetches up to the configured number of closest businesses from 
+       * the API and writes them to localStorage, then renders
        */
       fetchClosestBusinesses: function(lat, lon) {
          that = this;
@@ -100,7 +126,5 @@
             }
          });
       }
-
    }
-
 }(jQuery, window.NeedADrink || {}));

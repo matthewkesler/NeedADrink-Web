@@ -5,7 +5,7 @@
         <meta name="description" content="">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=320.1, initial-scale=1, user-scalable=no">
         <meta http-equiv="cleartype" content="on">
         <meta http-equiv="cache-control" content="max-age=0" />
         <meta http-equiv="cache-control" content="no-cache" />
@@ -23,10 +23,6 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <meta name="apple-mobile-web-app-title" content="Need A Drink">
 
-        <!-- This script prevents links from opening in Mobile Safari. https://gist.github.com/1042026 -->
-        <!--
-        <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
-        -->
         <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
@@ -34,34 +30,21 @@
         <div id="main" style="display:none;">
         </div>
 
+        <div id="overlay" style="display:none;">
+            <h1>Sorry!</h1>
+            <p>For now <span class="emphasis">Need A Drink</span> only supports portrait orientation.</p>
+        </div>
+
         <script type="text/javascript" src="js/lib/jquery.min.js"></script>
         <script type="text/javascript" src="js/lib/handlebars.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/finder.js"></script>
-
     </body>
 </html>
 
-<script id="add-to-homescreen" type="text/x-handlebars-template">
-    <h1>Thirsty?</h1>
-
-    <p>Download <span class="emphasis">Need A Drink</span> for your mobile device and quickly find the closest place to get a drink.</p>
-
-    <div class="download-message">
-        <p>Tap here to <span class="emphasis">Add to Home Screen</span></p>
-        <p><i class="icon-arrow-down"></i></p>
-    </div>
-</script>
-
-<script id="not-supported" type="text/x-handlebars-template">
-    <h1>Uh Oh!</h1>
-
-    <p>For now <span class="emphasis">Need A Drink</span> only supports small mobile devices with localStorage - try visting from your phone!</p>
-</script>
-
 <script id="closest-drink" type="text/x-handlebars-template">
-    <h1>Cheers!</h1>
-    <p>Your drink is waiting for you at:</p>
+    <h1 class="moveUp">Cheers!</h1>
+    <p>The <span class="next" style="display:none;">next </span>closest place to get a drink is:</p>
     <div id="locationPanel">
     </div>
     <p><button class="nextBtn">Not Feeling It?</button><button class="refreshBtn">Refresh Location</button></p>
@@ -71,26 +54,43 @@
 <script id="location" type="text/x-handlebars-template">
     <p class="static-map"><a href="https://maps.google.com/maps?daddr={{addressUrl}}"><img src="{{staticMapSrc}}"/></a></p>
     <address>
-        <a href="{{url}}">
+        <a href="{{yelpUrl}}">
             <p class="emphasis">{{name}}</p>
-                <p>{{address1}}</p>
-                <p>{{address2}}</p>
+            <p>{{address1}}</p>
+            <p>{{address2}}</p>
         </a>
     </address>
     <p>{{distance}} miles</p>
 </script>
 
+<script id="add-to-homescreen" type="text/x-handlebars-template">
+    <h1 class="moveDown">Thirsty?</h1>
+    <p class="add-to-homescreen">Download <span class="emphasis">Need A Drink</span> for your mobile device and quickly find the closest place to get a drink.</p>
+    <p><img src="img/icon-114.png"/></p>
+    <div class="download-message">
+        <p>Tap here to <span class="emphasis">Add to Home Screen</span></p>
+        <p><i class="icon-arrow-down"></i></p>
+    </div>
+</script>
+
+<script id="not-supported" type="text/x-handlebars-template">
+    <h1>Sorry!</h1>
+    <p class="not-supported">For now <span class="emphasis">Need A Drink</span> only supports small mobile devices with localStorage - try visiting from your phone!</p>
+</script>
+
 <script id="no-location" type="text/x-handlebars-template">
     <h1>Uh Oh!</h1>
-    <p>Geolocation is required for <span class="emphasis">Need A Drink</span></p>
-    
+    <p class="no-location">Geolocation is required for <span class="emphasis">Need A Drink</span>!</p>
 </script>
 
 <script id="error" type="text/x-handlebars-template">
     <h1>Uh Oh!</h1>
-    <p>Something bad happened - try reloading. (We could really use a drink right now!)</p>
+    <p class="error">Something bad happened - try reloading. (We could really use a drink right now!)</p>
 </script>
 
 <script id="loading" type="text/x-handlebars-template">
-    <p>Loading</p>
+    <div id="loadingDiv">
+        <p>Let's find a drink...</p>
+        <p><img src="img/loading.gif"/></p>
+    </div>
 </script>
