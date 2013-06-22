@@ -37,6 +37,8 @@
         <script type="text/javascript" src="js/lib/jquery.min.js"></script>
         <script type="text/javascript" src="js/lib/handlebars.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/finder.js"></script>
+
     </body>
 </html>
 
@@ -58,7 +60,28 @@
 </script>
 
 <script id="closest-drink" type="text/x-handlebars-template">
-    <h1>Here you go</h1>
+    <h1>Cheers!</h1>
+    <p>Your drink is waiting for you at:</p>
+    <div class="location">
+        <p><img src="{{staticMapSrc}}"/></p>
+        <a href="{{url}}">
+            <p class="emphasis">{{name}}</p>
+            <address>
+                <p>{{address1}}</p>
+                <p>{{address2}}</p>
+            </address>
+        </a>
+        <p>{{distance}} miles</p>
+    </div>
+</script>
 
-    <p>lskdjf sldkfjsdf lkskldjfl lksdjflksdf lkjsdflksd/p>
+<script id="no-location" type="text/x-handlebars-template">
+    <h1>Uh Oh!</h1>
+    <p>Geolocation is required for <span class="emphasis">Need A Drink</span></p>
+    
+</script>
+
+<script id="error" type="text/x-handlebars-template">
+    <h1>Uh Oh!</h1>
+    <p>Something bad happened - try reloading. (We could really use a drink right now!)</p>
 </script>
