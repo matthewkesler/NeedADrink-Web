@@ -31,7 +31,7 @@
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <div id="main">
+        <div id="main" style="display:none;">
         </div>
 
         <script type="text/javascript" src="js/lib/jquery.min.js"></script>
@@ -54,25 +54,30 @@
 </script>
 
 <script id="not-supported" type="text/x-handlebars-template">
-    <h1>Aww, man!</h1>
+    <h1>Uh Oh!</h1>
 
-    <p>For now <span class="emphasis">Need A Drink</span> only supports mobile devices - try visting from your phone!</p>
+    <p>For now <span class="emphasis">Need A Drink</span> only supports small mobile devices with localStorage - try visting from your phone!</p>
 </script>
 
 <script id="closest-drink" type="text/x-handlebars-template">
     <h1>Cheers!</h1>
     <p>Your drink is waiting for you at:</p>
-    <div class="location">
-        <p><img src="{{staticMapSrc}}"/></p>
+    <div id="locationPanel">
+    </div>
+    <p><button class="nextBtn">Not Feeling It?</button><button class="refreshBtn">Refresh Location</button></p>
+    <p class="yelp-logo"><a href="http://m.yelp.com"><img src="img/yelp.png"/></a></p>
+</script>
+
+<script id="location" type="text/x-handlebars-template">
+    <p class="static-map"><a href="https://maps.google.com/maps?daddr={{addressUrl}}"><img src="{{staticMapSrc}}"/></a></p>
+    <address>
         <a href="{{url}}">
             <p class="emphasis">{{name}}</p>
-            <address>
                 <p>{{address1}}</p>
                 <p>{{address2}}</p>
-            </address>
         </a>
-        <p>{{distance}} miles</p>
-    </div>
+    </address>
+    <p>{{distance}} miles</p>
 </script>
 
 <script id="no-location" type="text/x-handlebars-template">
@@ -84,4 +89,8 @@
 <script id="error" type="text/x-handlebars-template">
     <h1>Uh Oh!</h1>
     <p>Something bad happened - try reloading. (We could really use a drink right now!)</p>
+</script>
+
+<script id="loading" type="text/x-handlebars-template">
+    <p>Loading</p>
 </script>

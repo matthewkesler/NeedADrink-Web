@@ -1,6 +1,7 @@
 @blue: #2c3e50;
 @orange: #f39c12;
 @gray: #95a5a6;
+@white: #fff;
 
 body {
    font-size:16px;
@@ -9,6 +10,7 @@ body {
    background-color: @blue;
    overflow-x: hidden;
    overflow-y: hidden;
+   min-width:305px;
 
    a {
       color:inherit;
@@ -27,13 +29,41 @@ body {
    }
 
    h1 {
+      margin:10px;
       color:@orange;
       text-align: center;
+   }
+
+   button {
+      width:140px;
+      height:40px;
+      border:none;
+      background-color:@orange;
+      color:@white;
+      margin:10px 5px 10px 5px;
+      font-size:1em;
+
+      &.nextBtn {
+         margin-right:0;
+         float:left;
+      }
+      
+      &.refreshBtn {
+         margin-left:0;
+         float:right;
+      }
+      
+   }
+
+   address {
+     font-style: normal;
    }
 
    .emphasis {
       color:@orange;
    }
+
+
 
    .download-message {
       position: fixed;
@@ -50,8 +80,22 @@ body {
       }
    }
 
-   img {
-      border: 1px solid @gray;
-      padding: 1px;
+   #locationPanel {
+      height: 270px;
+   }
+
+   .static-map {
+      padding:10px 0 10px 0;
+      img {
+         border: 1px solid @gray;
+         padding: 1px;
+      }
+   }
+
+   .yelp-logo {
+      position:fixed;
+      bottom:0;
+      width:100%;
+      text-align:center;
    }
 }
