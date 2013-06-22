@@ -1,0 +1,32 @@
+body {
+  font-size: 16px;
+  font-family: 'Helvetica Neue';
+  color: #95a5a6;
+  background-color: #2c3e50;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+body p {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+body p .emphasis {
+  color: #f39c12;
+}
+body h1 {
+  color: #f39c12;
+  text-align: center;
+}
+body .download-message {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+body .download-message p {
+  padding-bottom: 5px;
+}
+body .download-message i {
+  margin-left: -15px;
+  font-size: 1.5em;
+}

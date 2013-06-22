@@ -1,0 +1,42 @@
+@blue: #2c3e50;
+@orange: #f39c12;
+@gray: #95a5a6;
+
+body {
+   font-size:16px;
+   font-family: 'Helvetica Neue';
+   color: @gray;
+   background-color: @blue;
+   overflow-x: hidden;
+   overflow-y: hidden;
+
+   p {
+      text-align: center;
+      margin:0;
+      padding:0;
+
+      .emphasis {
+         color:@orange;
+      }
+   }
+
+   h1 {
+      color:@orange;
+      text-align: center;
+   }
+
+   .download-message {
+      position: fixed;
+      width:100%;
+      bottom:0;
+
+      p {
+         padding-bottom:5px;    
+      }
+
+      i {
+         margin-left:-15px;
+         font-size:1.5em;
+      }
+   }
+}
