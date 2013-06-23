@@ -5,11 +5,6 @@ window.NeedADrink = {
 };
 
 $(function() {
-   //prevent scrolling
-   document.ontouchmove = function(e){
-      e.preventDefault();
-   }
-
    // disable landscape
    window.addEventListener("orientationchange", function() {
       if(window.orientation == 90 || window.orientation == -90) {
@@ -22,14 +17,22 @@ $(function() {
       }
    }, false);
 
-   //figure out which view to show
-   if("standalone" in window.navigator && screen.width < 750 && localStorage) {
-      if(window.navigator.standalone) {
-         NeedADrink.Finder.init();
+   // figure out which view to show
+   if("standalone" in window.navigator) { // iOS
+      //prevent scrolling for iOS - leave it for others 
+      // because who knows what size they'll be
+      document.ontouchmove = function(e){ 
+         e.preventDefault();
+      }
+      if(window.navigator.standalone) { // from home screen
+         NeedADrink.Finder.init();      
       }
       else {
          $("#main").html(Handlebars.compile($("#add-to-homescreen").html())).fadeIn(1000);
       }
+   }
+   else if (screen.width < 750 && localStorage) {
+      NeedADrink.Finder.init();
    }
    else {
       $("#main").html(Handlebars.compile($("#not-supported").html())).fadeIn(1000);
