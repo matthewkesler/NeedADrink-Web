@@ -89,9 +89,16 @@ body .error,
 body .no-location {
   margin-top: 30%;
 }
+body .not-supported-container {
+  width: 960px;
+  margin: auto;
+}
+body .not-supported-img {
+  margin: 25px 0;
+}
 body .not-supported {
-  margin: 150px 100px 0 100px;
   font-size: 1.4em;
+  padding-bottom: 10px;
 }
 body .add-to-homescreen {
   margin-top: 30px;
