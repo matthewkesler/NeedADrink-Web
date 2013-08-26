@@ -1,10 +1,10 @@
 (function($, NeedADrink) {
-   NeedADrink.Finder = {
-      /**
-       * Geolocate and render a new nearby business 
-       */
-      init: function() {
-         var that = this;
+  NeedADrink.Finder = {
+    /**
+     * Geolocate and render a new nearby business 
+     */
+    init: function() {
+      var that = this;
          $("#main").fadeOut(function() {
            $("#main").html(Handlebars.compile($("#loading").html())).fadeIn();
          });
