@@ -99,7 +99,6 @@
          });
 
          $('body').on('click', '.business-info', function() {
-            alert("here");
             window.location = this.attr('data-url');
          });
       },
